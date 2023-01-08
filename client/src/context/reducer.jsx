@@ -6,8 +6,10 @@ export default function reducer(state, action) {
       return { ...state, count: state.count - 1 };
     case "setCustom":
       return { ...state, count: action.value };
-      case "setUser":
+    case "setUser":
       return { ...state, user: action.user };
+      case "login":
+      return { ...state, userLoggedIn: action.loggedIn };
     default:
       throw new Error();
   }

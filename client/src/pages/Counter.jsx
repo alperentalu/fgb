@@ -9,6 +9,7 @@ function Counter() {
     userId: 10,
     phone: '5422573278'
   }
+  const loggedIn = true
   return (
     <div>
       <p>Count: {state.count}</p>
@@ -20,6 +21,9 @@ function Counter() {
       </button>
       <button onClick={() => dispatch({type: 'setUser', user})}>
         Decrement
+      </button>
+      <button onClick={() => dispatch({type: 'login', loggedIn})}>
+        Logged In
       </button>
       <button onClick={() => dispatch({type: 'setCustom', value})}>
         Set 5

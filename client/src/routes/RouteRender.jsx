@@ -6,10 +6,11 @@ import Store from '../context/GlobalContext'
 
 function RouteRender() {
   const { dispatch, state } = useContext(Store);
+
   return (
     <BrowserRouter>
         <Routes>
-          {state.user ? (
+          {state.userLoggedIn ? (
             <>
               <Route path="/*" element={<PrivateRoutes />} />
               {/* <Route path="*" element={<NoMatch />} /> */}

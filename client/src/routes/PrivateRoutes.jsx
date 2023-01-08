@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
     <Routes>
       <Route path="/homepage" element={<HomePage />} />
       <Route path="/counter" element={<Counter />} />
-      <Route path="/*" element={<Counter />} />
+      <Route path="/*" element={<HomePage />} />
     </Routes>
   );
 };
