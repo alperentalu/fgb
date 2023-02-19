@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
-
+var cors = require('cors')
 const app = express();
 
 // Kullanıcı adı ve parola yerine burada basitçe bir nesne kullanıyoruz
@@ -14,16 +14,12 @@ const users = [
 ];
 
 // JWT için gerekli olan gizli anahtar (Secret Key)
-const jwtSecretKey = 'my-32-character-ultra-secure-and-ultra-long-secret';
+const jwtSecretKey = 'Alperen';
 
 // BodyParser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
+app.use(cors());
 
 // Login endpoint
 app.post('/login', (req, res) => {
@@ -48,7 +44,7 @@ app.post('/login', (req, res) => {
 });
 function verifyToken(req, res, next) {
     // Header'dan token'ı al
-    const token = req.headers['authorization'];
+    const token = req.headers['authorization'].split(' ')[1];
   
     if (!token) {
       // token yoksa hata döndür
@@ -57,8 +53,7 @@ function verifyToken(req, res, next) {
   
     try {
       // Token'ı doğrula
-      const decoded = jwt.verify(token, 'gizlianahtar');
-  
+      const decoded = jwt.verify(token, jwtSecretKey);
       // İsteğe token ver
       req.token = decoded;
   
@@ -71,7 +66,7 @@ function verifyToken(req, res, next) {
   
   // Korumalı rotalar
   app.get('/api/protected', verifyToken, (req, res) => {
-    res.send(`Hoş geldiniz ${req.token.username}!`);
+    res.send(`Hoş geldiniz ${req.token.user.username}!`);
   });
 // Uygulamayı dinlemeye başla
 app.listen(3000, () => console.log('Uygulama 3000 numaralı portta çalışıyor.'));
