@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import Counter from "../pages/Counter";
 import HomePage from "../pages/HomePage"
+import Login from '../pages/Login'
 const PublicRoutes = () => {
   return (
+    <div className="d-flex align-items-center justify-content-center">
     <Routes>
-      <Route path="/homepage" element={<HomePage />} />
-      <Route path="/counter" element={<Counter />} />
-      <Route path="/*" element={<Counter />} />
+      <Route path="/*" element={<Login />} />
     </Routes>
+    </div>
   );
 };
 
