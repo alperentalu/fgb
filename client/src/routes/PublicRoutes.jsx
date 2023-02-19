@@ -1,6 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import Counter from "../pages/Counter";
-import HomePage from "../pages/HomePage"
 import Login from '../pages/Login'
 const PublicRoutes = () => {
   return (
